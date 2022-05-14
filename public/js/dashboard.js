@@ -58,7 +58,7 @@ function printBoard(board) {
             if (!firstColunm) {
                 let inputField = document.createElement('input');
                 inputField.id=`${name}_${i}_${header}_input`;
-                inputField.className = "boardField form-control field"+header;
+                inputField.className = "boardField form-control" ;
                 inputField.onchange = (e)=>{
                     console.log(e.target.value);
                     let [boardName,lineIndex,fieldName] = e.target.id.split('_');
