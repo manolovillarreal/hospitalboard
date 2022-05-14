@@ -3,7 +3,7 @@ const { comprobarJWT } = require('../helpers/generar-jwt');
 const Usuario = require('../models/usuario');
 const { usuarioConectado } = require('../controllers/sockets');
 
-const boards = [{
+let Boards = [{
     name: 'Hospitalizacion',
     headers: ['Cama', 'Nombre', 'Edad', 'EPS', 'Especialdad'],
     lines: [
@@ -54,14 +54,21 @@ class Sockets {
             let { screen } = socket.handshake.query;
             console.log("Conexion");
 
-            this.io.emit('boards', boards);
+            socket.emit('boards', Boards);
 
             if (screen) {
 
             }
             //Evento Find Match
-            socket.on('newRegistry', () => {
-                console.log('New Registry');
+            socket.on('updateBoard', (board) => {
+               Boards = Boards.map((b)=>{
+                   if(b.name == board.name){
+                       b.lines = board.lines;
+                   }
+                   return b;
+               })
+               this.io.emit('updateBoard',board);
+                
             });
 
             //Evento cuando se desconecta un cliente

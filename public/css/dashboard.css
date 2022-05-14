@@ -1,0 +1,15 @@
+#boardsMenu div{
+    cursor: pointer;
+    padding: 2px;
+    transition: all 0.1s ease;
+
+}
+
+#boardsMenu div:hover{
+    font-weight: bold;
+    border-bottom: 1px solid gray;
+}
+
+.Edad{
+    width: 70px !important;
+}
