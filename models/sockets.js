@@ -3,10 +3,35 @@ const { comprobarJWT } = require('../helpers/generar-jwt');
 const Usuario = require('../models/usuario');
 const { usuarioConectado } = require('../controllers/sockets');
 
+const boards = [{
+    name: 'Hospitalizacion',
+    headers: ['Cama', 'Nombre', 'Edad', 'EPS', 'Especialdad'],
+    lines: [
+        { Cama: '1' },
+        { Cama: '2' },
+        { Cama: '3' },
+        { Cama: '4A' },
+        { Cama: '4B' },
+        { Cama: '5A' },
+        { Cama: '5B' },
+        { Cama: '6A' },
+        { Cama: '6B' },
+        { Cama: '7A' },
+        { Cama: '7B' },
+        { Cama: '8A' },
+        { Cama: '8B' },
+        { Cama: '9A' },
+        { Cama: '9B' },
+        { Cama: '11A' },
+        { Cama: '11B' },
+    ]
+}]
+
+
 class Sockets {
     constructor(io) {
         this.io = io;
-        this.onlineUsers = [];
+        this.onlineClients = [];
         this.socketsEvents();
         this.socketMiddlewares();
     }
@@ -27,6 +52,9 @@ class Sockets {
     socketsEvents() {
         this.io.on('connection', async(socket) => {
             let { screen } = socket.handshake.query;
+            console.log("Conexion");
+
+            this.io.emit('boards', boards);
 
             if (screen) {
 
@@ -43,7 +71,6 @@ class Sockets {
                 ESTA BUSCANDO PARTIDA 
                 */
                 console.log('user disconnected');
-                usuarioConectado(user.uid, false);
             });
         });
 

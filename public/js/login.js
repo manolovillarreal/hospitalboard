@@ -1,15 +1,18 @@
 const formLoginId = 'formLogin';
 let jwt = localStorage.getItem("jwt")
 
+init();
 
-let formLogin = document.getElementById(formLoginId);
-formLogin.addEventListener("submit", onSubmitFormLogin);
+function init() {
 
-if (jwt) {
-    validartoken();
+    let formLogin = document.getElementById(formLoginId);
+    formLogin.addEventListener("submit", onSubmitFormLogin);
+
+    if (jwt) {
+        validarToken();
+    }
+
 }
-
-
 
 async function validarToken(params) {
 
