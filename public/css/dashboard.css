@@ -1,15 +1,44 @@
-#boardsMenu div{
+#side_menu {
+    flex: 1;
+    background-color: rgb(198, 218, 255);
+    height: 100vh;
+    padding: 20px;
+}
+
+#boardsMenu div {
     cursor: pointer;
     padding: 2px;
     transition: all 0.1s ease;
-
 }
 
-#boardsMenu div:hover{
+#boardsMenu div:hover {
     font-weight: bold;
-    border-bottom: 1px solid gray;
 }
 
-.Edad{
+#board_container {
+    flex: 10;
+    padding: 10px
+}
+
+#boardHeader {
+    display: flex;
+    align-items: center;
+}
+
+#btnView {
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+#btnReload {
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+#btnSave {
+    margin-left: auto;
+}
+
+.Edad {
     width: 70px !important;
 }

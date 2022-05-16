@@ -9,6 +9,13 @@ const login = async(req, res = response) => {
     const usuarioDB = await Usuario.findOne({ username });
 
     //Si el usuario esta activo
+    if (!usuarioDB) {
+        return res.status(400).json({
+            msg: 'Usuario o contraseña no son correctos - usuario'
+        });
+    }
+
+    //Si el usuario esta activo
     if (!usuarioDB.estado) {
         return res.status(400).json({
             msg: 'Usuario o contraseña no son correctos - estado'

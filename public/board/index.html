@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tablero</title>
+    <style>
+        .field {
+            padding: 0 0 !important;
+        }
+    </style>
     <script src="../socket.io/socket.io.js"></script>
     <script defer src="../js/board.js"></script>
 
@@ -14,10 +19,15 @@
 </head>
 
 <body>
-    <div id="content">
-        <h1 id="boardName"></h1>
-        <div id="boardPanel">
-            
+    <div id="content" style="padding-left: 5px;">
+        <div id="boardHeader" style="display:flex">
+            <h6 id="boardName">
+            </h6>
+            <h6 id="boardDate" style="margin-left: auto;">
+
+            </h6>
+        </div>
+        <div id="boardPanel" style="font-size: 24px; display: block;">
         </div>
     </div>
 

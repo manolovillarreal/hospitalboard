@@ -82,6 +82,7 @@ async function autenticar(loginJSON) {
 function usuarioAtenticado(usuario, token) {
 
     localStorage.setItem("jwt", token);
+    localStorage.setItem("user", JSON.stringify(usuario));
     window.location.assign('/dashboard');
 }
 

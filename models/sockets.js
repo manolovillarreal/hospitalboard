@@ -51,25 +51,26 @@ class Sockets {
     }
     socketsEvents() {
         this.io.on('connection', async(socket) => {
-            let { screen } = socket.handshake.query;
             console.log("Conexion");
 
             socket.emit('boards', Boards);
-
-            if (screen) {
-
-            }
             //Evento Find Match
             socket.on('updateBoard', (board) => {
-               Boards = Boards.map((b)=>{
-                   if(b.name == board.name){
-                       b.lines = board.lines;
-                   }
-                   return b;
-               })
-               this.io.emit('updateBoard',board);
-                
+                Boards = Boards.map((b) => {
+                    if (b.name == board.name) {
+                        b.lines = board.lines;
+                    }
+                    return b;
+                })
+                socket.broadcast.emit('updateBoard', board);
+
             });
+            socket.on('changeFontSize', ({ boardName, increment }) => {
+                this.io.emit('changeFontSize', { boardName, increment })
+            })
+            socket.on('reload', () => {
+                socket.broadcast.emit('reload')
+            })
 
             //Evento cuando se desconecta un cliente
             socket.on('disconnect', () => {
