@@ -7,8 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tablero</title>
     <style>
+        body{
+            line-height: 1.1 !important;
+        }
+        #boardPanel{
+            font-size: 30px; 
+            display: block;
+        }
+        .header {
+            padding: 4px 4px !important;
+        }
+
         .field {
+            border-bottom-width: 1px !important;
+            font-weight:400;
             padding: 0 0 !important;
+        }
+        .field div{
+           /* transform: scale(1,1.4);*/
         }
     </style>
     <script src="../socket.io/socket.io.js"></script>
@@ -19,7 +35,7 @@
 </head>
 
 <body>
-    <div id="content" style="padding-left: 5px;">
+    <div id="content" style="padding-left: 8px;">
         <div id="boardHeader" style="display:flex">
             <h6 id="boardName">
             </h6>
@@ -27,7 +43,7 @@
 
             </h6>
         </div>
-        <div id="boardPanel" style="font-size: 24px; display: block;">
+        <div id="boardPanel"">
         </div>
     </div>
 

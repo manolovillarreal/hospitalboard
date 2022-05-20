@@ -76,18 +76,21 @@ function printBoard(board) {
 
     const table = document.createElement('table');
     table.className = "table table-striped";
+
+    //Table head
     const thead = document.createElement('thead');
     thead.className = 'table-dark';
     let tr = document.createElement('tr');
     for (const header of headers) {
         let th = document.createElement('th');
-        th.className = "header" + header;
+        th.className = "header header_" + header;
         th.append(header);
         tr.append(th);
     }
     thead.append(tr);
     table.append(thead);
-
+    //
+    //
     const tbody = document.createElement('tbody');
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
@@ -96,7 +99,9 @@ function printBoard(board) {
             let td = document.createElement('td');
             td.className = "field field_" + header;
             if (Object.hasOwnProperty.call(line, header)) {
-                td.append(line[header].toUpperCase());
+                let span = document.createElement('div');
+                span.append(line[header].toUpperCase());
+                td.append(span);
             }
             tr.append(td);
         }
