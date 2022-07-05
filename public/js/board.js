@@ -57,7 +57,8 @@ socket.on('updateBoard', (board) => {
     }
 })
 
-
+setInterval(switchTheme,900000);
+setInterval(setClock,15000);
 
 function generateBoard(board) {
     const boardPanel = document.getElementById('boardPanel');
@@ -66,6 +67,7 @@ function generateBoard(board) {
     document.getElementById('boardName').innerHTML = board.name;
     document.getElementById('boardDate').innerHTML = (new Date()).toDateString('DD/MM/YYYY');
 
+    setClock();
     const boardHtml = printBoard(board);
     document.getElementById('boardPanel').innerHTML = "";
     document.getElementById('boardPanel').append(boardHtml);
@@ -73,6 +75,8 @@ function generateBoard(board) {
 
 function printBoard(board) {
     const { name, headers, lines } = board
+
+    
 
     const table = document.createElement('table');
     table.className = "table table-striped";
@@ -110,4 +114,21 @@ function printBoard(board) {
     table.append(tbody);
 
     return table;
+}
+
+function setClock(){
+    let date = new Date()
+    document.getElementById('clock').innerHTML = `${date.getHours()<10?'0':''}${date.getHours()}:${date.getMinutes()<10?'0':''}${date.getMinutes()}`;
+
+}
+function switchTheme(){
+    if(!document.body.classList.contains("dark")){
+        document.body.className+=" dark";
+        document.getElementsByTagName("table")[0].className+=" table-dark";
+    }
+    else{
+        document.body.classList.remove("dark");
+        document.getElementsByTagName("table")[0].classList.remove("table-dark");
+    }
+
 }

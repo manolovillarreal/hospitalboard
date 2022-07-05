@@ -18,7 +18,7 @@ socket.on('connect', function() {
 socket.on('boards', (boards) => {
     generateBoardsMenu(boards);
 
-    if (user.rol != 2){
+    if (user?.rol != 2){
         ActiveBoardName = boards[0].name
         showActiveBoard();
     }
@@ -55,8 +55,7 @@ function generateBoardsMenu(boards) {
         window.location = "/";
     });
 
-
-    if (user.rol == 0) {
+    if (user?.rol == 0) {
         const adminOption = document.createElement('div');
         adminOption.innerHTML = 'Administrador';
         adminOption.onclick = (() => {
